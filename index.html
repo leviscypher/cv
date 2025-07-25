@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Tạ Quang Thắng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .experience-item, .project-item {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .experience-item:hover::before, .project-item:hover::before {
+            left: 100%;
+        }
+
+        .experience-item:hover, .project-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .company {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .goals {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
+        }
+
+        .goal-item {
+            margin-bottom: 15px;
+        }
+
+        .goal-item h4 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .goal-item p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .education {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tech-item {
+            background: #e9ecef;
+            color: #495057;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .name {
+                font-size: 2em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .job-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .header::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">Tạ Quang Thắng</h1>
+                <p class="title">Software Developer</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>0966493975</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <span>taquangthang2002hn@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Hạ Bằng - Hà Nội</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Mục Tiêu Nghề Nghiệp</h2>
+                <div class="goals">
+                    <div class="goal-item">
+                        <h4>Mục tiêu ngắn hạn (2-3 năm):</h4>
+                        <p>Trở thành một chuyên gia phát triển hệ thống backend hiệu năng cao, chuyên sâu về kiến trúc Microservices, Docker, CI/CD và tối ưu truy vấn CSDL.</p>
+                    </div>
+                    <div class="goal-item">
+                        <h4>Mục tiêu dài hạn (3-5 năm):</h4>
+                        <p>Hướng tới vị trí Senior Developer trong 3–5 năm tới, có khả năng thiết kế và triển khai hệ thống backend cho các ứng dụng quy mô lớn.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Freelance</div>
+                            <div class="job-title">FREELANCE DEVELOPER</div>
+                        </div>
+                        <div class="date">3/2025 - Hiện tại</div>
+                    </div>
+                    <div class="job-description">
+                        • Thực hiện các dự án web cho khách hàng cá nhân<br>
+                        • Tự phát triển giao diện với Vue.js, HTML, CSS, JavaScript, jQuery, kết hợp Tailwind CSS cho thiết kế hiện đại, responsive<br>
+                        • Tích hợp RESTful API từ backend .NET Core, đảm bảo luồng dữ liệu mượt mà giữa front-end và back-end
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Công ty cổ phần tập đoàn Mường Thanh</div>
+                            <div class="job-title">SOFTWARE DEVELOPER (.NET CORE)</div>
+                        </div>
+                        <div class="date">7/2024 - 2/2025</div>
+                    </div>
+                    <div class="job-description">
+                        • Tham gia dự án API Gateway cho hệ thống đặt phòng, quản lý người dùng<br>
+                        • Viết và tối ưu các API RESTful kết nối hệ thống frontend<br>
+                        • Tối ưu các câu truy vấn, cải thiện hiệu năng ứng dụng<br>
+                        • Sử dụng SVN để quản lý mã nguồn
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Công ty cổ phần tập đoàn Flamingo</div>
+                            <div class="job-title">SOFTWARE DEVELOPER (.NET CORE)</div>
+                        </div>
+                        <div class="date">12/2023 - 6/2024</div>
+                    </div>
+                    <div class="job-description">
+                        • Tham gia phát triển các dự án sử dụng .NET Core Api và .Net Core MVC<br>
+                        • Đóng góp ý tưởng, đề xuất giải pháp kỹ thuật hỗ trợ đội phát triển nâng cao chất lượng sản phẩm<br>
+                        • Làm việc với jQuery, Bootstrap trong các module hiển thị báo cáo
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Kỹ Năng</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">.NET Core</span>
+                            <span class="skill-tag">Entity Framework</span>
+                            <span class="skill-tag">LINQ</span>
+                            <span class="skill-tag">OOP</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Database</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SQL Server</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>DevOps</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">SVN</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Frontend</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">jQuery</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Dự Án Tiêu Biểu</h2>
+                
+                <div class="project-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Muong Thanh Group</div>
+                            <div class="job-title">Automatic Review System</div>
+                        </div>
+                        <div class="date">2025</div>
+                    </div>
+                    <div class="job-description">
+                        • Xây dựng các giao diện người dùng mới theo yêu cầu và thiết kế đã được phê duyệt<br>
+                        • Triển khai các API được giao và tham gia thiết kế cấu trúc cơ sở dữ liệu
+                        <div class="tech-list">
+                            <span class="tech-item">.NET Core</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">TypeScript</span>
+                            <span class="tech-item">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Muong Thanh Group</div>
+                            <div class="job-title">API Gateway</div>
+                        </div>
+                        <div class="date">2024 - 2025</div>
+                    </div>
+                    <div class="job-description">
+                        • Tối ưu các câu lệnh và truy vấn SQL nhằm nâng cao hiệu suất<br>
+                        • Tham gia viết mới và chỉnh sửa các API hiện có để cải thiện chức năng và độ ổn định của hệ thống
+                        <div class="tech-list">
+                            <span class="tech-item">.NET Core</span>
+                            <span class="tech-item">SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Flamingo Holding Group</div>
+                            <div class="job-title">WorkOW UI & CMS System</div>
+                        </div>
+                        <div class="date">2024</div>
+                    </div>
+                    <div class="job-description">
+                        • Phát triển hệ thống quản lý workflow và CMS cho tập đoàn<br>
+                        • Xây dựng giao diện quản trị nội dung cho ứng dụng Mobile App
+                        <div class="tech-list">
+                            <span class="tech-item">.NET Core</span>
+                            <span class="tech-item">Vue.js</span>
+                            <span class="tech-item">DevExpress</span>
+                            <span class="tech-item">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Học Vấn</h2>
+                <div class="education">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Trường Đại học Giao thông Vận tải</div>
+                            <div class="company">Công nghệ thông tin</div>
+                        </div>
+                        <div class="date">2020 - 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling and animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate skill tags on hover
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                tag.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add click effect to contact items
+            const contactItems = document.querySelectorAll('.contact-item');
+            contactItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const text = this.textContent.trim();
+                    if (text.includes('@')) {
+                        window.location.href = `mailto:${text.split(' ')[1]}`;
+                    } else if (text.match(/^\d/)) {
+                        window.location.href = `tel:${text.split(' ')[1]}`;
+                    }
+                });
+                
+                item.style.cursor = 'pointer';
+            });
+        });
+    </script>
+</body>
+</html>
